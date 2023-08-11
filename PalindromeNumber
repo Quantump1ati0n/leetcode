@@ -1,0 +1,43 @@
+public class PalindromeNumber {
+
+    public static void main (String[] args) {
+        // Number to check.
+        int x = -121;
+        System.out.println(isPalindrome(x));
+    }
+
+    public static boolean isPalindrome(int x) {
+        if (x < 0) {
+            return false;
+        }
+        // String of x
+        String str = String.valueOf(x);
+        // If length is 1, return true
+        if (str.length() == 1) {
+            return true;
+        }
+        // Get number of place values in x
+        int copy = x;
+        int places = 0;
+        while (copy > 0) {
+            copy = copy / 10;
+            places++;
+        }
+        // Initialize a new array of size places + 1
+        char[] arr = new char[places];
+        // Copy all char in str to arr
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = str.charAt(i);
+        }
+        // Loop over arr and compare indices
+        int j = arr.length - 1;
+        for (int i = 0; i <= arr.length / 2; i++) {
+            if (arr[i] == arr[j]) {
+                j--;
+            } else {
+                return false;
+            }
+        }
+        return true;
+    }
+}
